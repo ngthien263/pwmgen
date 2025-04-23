@@ -2,8 +2,8 @@
 #include <stdio.h>
 #include "TFT.h"
 #include "Timer.h"
-volatile uint16_t duty = 60;
-volatile uint16_t freq = 1000;
+volatile uint16_t duty = 100;
+volatile uint16_t freq = 50;
 
 
 void increaseDuty(void) {
@@ -14,7 +14,7 @@ void increaseDuty(void) {
 
 void decreaseDuty(void) {
     duty -= 10;
-		if (duty > 0) duty = 0;
+		if (duty == 65535 ) duty = 0;
 		TIM_OC1_PWMM1_Init(TIM1, freq, duty);
 }
 

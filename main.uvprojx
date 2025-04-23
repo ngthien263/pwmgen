@@ -465,14 +465,14 @@
               <FilePath>.\Timer.h</FilePath>
             </File>
             <File>
-              <FileName>USART.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\USART.c</FilePath>
-            </File>
-            <File>
               <FileName>USART.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\USART.h</FilePath>
+            </File>
+            <File>
+              <FileName>USART.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\USART.c</FilePath>
             </File>
           </Files>
         </Group>
