@@ -84,7 +84,8 @@ void EXTI1_IRQHandler(void) {
     if (EXTI->PR & (1 << 1)) {
         if ((tick_ms - last_press_pb1) > 50) {
             decreaseDuty();
-            display();
+						volt = 3.3 * duty / 100;
+						updatePWM(freq, duty);
             last_press_pb1 = tick_ms;
         }
         EXTI->PR |= (1 << 1);
@@ -95,7 +96,8 @@ void EXTI15_10_IRQHandler(void) {
     if (EXTI->PR & (1 << 10)) {
         if ((tick_ms - last_press_pb10) > 50) {
             increaseFreq();
-            display();
+						volt = 3.3 * duty / 100;
+						updatePWM(freq, duty);
             last_press_pb10 = tick_ms;
         }
         EXTI->PR |= (1 << 10);
@@ -103,7 +105,7 @@ void EXTI15_10_IRQHandler(void) {
     if (EXTI->PR & (1 << 11)) {
         if ((tick_ms - last_press_pb11) > 50) {
             decreaseFreq();
-            display();
+           updatePWM(freq, duty);
             last_press_pb11 = tick_ms;
         }
         EXTI->PR |= (1 << 11);

@@ -3,7 +3,7 @@
 #include "SPI.h"
 #include "font5x7.h"
 #include "string.h"
-
+#include <stdlib.h>
 void delay_ms(uint32_t ms) {
     for (volatile uint32_t i = 0; i < ms * 8000; i++);
 }
@@ -172,11 +172,26 @@ void TFT_FillRect(uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint16_t color
     }
 }
 
+void TFT_DrawLine(int x0, int y0, int x1, int y1, uint16_t color) {
+    int dx = abs(x1 - x0), sx = x0 < x1 ? 1 : -1;
+    int dy = -abs(y1 - y0), sy = y0 < y1 ? 1 : -1;
+    int err = dx + dy, e2; // error value
+
+    while (1) {
+        TFT_DrawPixel(x0, y0, color);  // V? di?m hi?n t?i
+
+        if (x0 == x1 && y0 == y1) break;
+        e2 = 2 * err;
+        if (e2 >= dy) { err += dy; x0 += sx; }
+        if (e2 <= dx) { err += dx; y0 += sy; }
+    }
+}
+
 
 void clearString(char *str, uint16_t x, uint16_t y, uint8_t scale) {
     uint16_t len = strlen(str);
     uint16_t charW = 6 * scale;
     uint16_t charH = 8 * scale;
-    TFT_FillRect(x, y, len * charW, charH, COLOR_BLUE);
+    TFT_FillRect(x, y, (len + 1) * charW, charH, COLOR_BLACK);
 }
 

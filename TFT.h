@@ -58,6 +58,7 @@ void TFT_DrawChar(uint16_t x, uint16_t y, char c, uint16_t color, uint8_t scale)
 void TFT_DrawString(uint16_t x, uint16_t y, const char* str, uint16_t color, uint8_t scale);
 void TFT_FillRect(uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint16_t color);
 void clearString(char *str, uint16_t x, uint16_t y, uint8_t scale);
+void TFT_DrawLine(int x0, int y0, int x1, int y1, uint16_t color);
 
 
 #endif /* __TFT_H__ */
